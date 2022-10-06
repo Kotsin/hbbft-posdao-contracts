@@ -1,4 +1,4 @@
-pragma solidity ^0.5.16;
+pragma solidity =0.8.17;
 
 import "./interfaces/ICertifier.sol";
 import "./interfaces/IKeyGenHistory.sol";
@@ -112,7 +112,7 @@ contract TxPermissionHbbft is UpgradeableOwned, ITxPermission {
         for (uint256 i = 0; i < allowedSendersLength; i++) {
             if (_sender == _allowedSenders[i]) {
                 _allowedSenders[i] = _allowedSenders[allowedSendersLength - 1];
-                _allowedSenders.length--;
+                _allowedSenders.pop();
                 break;
             }
         }
@@ -184,7 +184,7 @@ contract TxPermissionHbbft is UpgradeableOwned, ITxPermission {
     /// @param _to Transaction recipient address. If creating a contract, the `_to` address is zero.
     /// @param _gasPrice Gas price in wei for the transaction.
     /// @param _data Transaction data.
-    /// @return `uint32 typesMask` - Set of allowed transactions for `_sender` depending on tx `_to` address,
+    /// @return typesMask `uint32 typesMask` - Set of allowed transactions for `_sender` depending on tx `_to` address,
     /// `_gasPrice`, and `_data`. The result is represented as a set of flags:
     /// 0x01 - basic transaction (e.g. ether transferring to user wallet);
     /// 0x02 - contract call;
@@ -373,7 +373,7 @@ contract TxPermissionHbbft is UpgradeableOwned, ITxPermission {
 
     /// @dev Returns a boolean flag indicating if the `initialize` function has been called.
     function isInitialized() public view returns (bool) {
-        return validatorSetContract != IValidatorSetHbbft(0);
+        return validatorSetContract != IValidatorSetHbbft(address(0));
     }
 
     // ============================================== Internal ========================================================
