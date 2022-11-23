@@ -1,6 +1,6 @@
 pragma solidity =0.8.17;
 
-import "./mockContracts/ValidatorSetHbbftMock.sol";
+import "../mockContracts/ValidatorSetHbbftMock.sol";
 
 /// @dev Stores the current validator set and contains the logic for choosing new validators
 /// before each staking epoch. The logic uses a random seed generated and stored by the `RandomHbbft` contract.
