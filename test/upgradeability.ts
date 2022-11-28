@@ -140,7 +140,7 @@ describe('BlockRewardHbbft', () => {
         ], multisend.address);
 
         console.log(`test upgraded`);
-        await upgrader.execTransactionFromModule(multiSendTx.to,
+        await upgrader.execTransaction(multiSendTx.to,
             multiSendTx.value,
             multiSendTx.data,
             multiSendTx.operation || 0);
